@@ -1,15 +1,40 @@
 <h2>Mis Productos </h2>
 
+
+<div *ngIf="productoSeleccionado">
+    <h2>Detalle {{ productoSeleccionado.nombre | uppercase }} </h2>
+    <div>
+        <span>ID: </span> {{ productoSeleccionado.id }}
+    </div>
+
+    <div>
+        <label>Nombre:
+            <input [(ngModel)]="productoSeleccionado.nombre" placeholder="nombre"/>
+        </label>
+    </div>
+
+</div>
+
 <!-- <ul *ngFor="let producto of productos">
     <li>{{producto.nombre}}</li>
 </ul> -->
-<ul class="productos" *ngFor="let producto of productos" (click)="onSelect(producto)">
-    <li>
+<ul class="productos">
+    <li *ngFor="let producto of productos"
+    [class.selected]="producto === productoSeleccionado"
+    (click)="onSelect(producto)">
+    <span class="badge">{{producto.id}}</span> {{producto.nombre}}
+    </li>
+</ul>
+
+<!-- <ul class="productos" *ngFor="let producto of productos" (click)="onSelect(producto)">
+    <li [class.selected]="producto === productoSeleccionado">
         <div>
             <span>{{producto.id}}</span> {{producto.nombre}}
         </div>
     </li>
-</ul>
+</ul> -->
+
+
 
 <!-- <h2>{{ productoSeleccionado.nombre | uppercase }} Detalles</h2>
 <div>
