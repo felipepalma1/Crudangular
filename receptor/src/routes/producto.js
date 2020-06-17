@@ -3,13 +3,28 @@
 let express = require('express')
 let router = express.Router()
 
+/*QueryString => localhost:3000/producto?nombre=leche&marca=soprole*/
 router.get('/producto', (req, res) => {
-    res.send('Solicitud Producto')
+    
+    console.log("Producto")
+
+    if(req.query.nombre){
+        res.send(`Se ha solicitado un producto ${req.query.nombre}`)
+    }
+    else{
+        res.send(`Se ha solicitado un producto`)
+    }
+
 })
 
-router.get('/producto:nombre', (req, res) => {
-    res.send('Solicitud Producto \n', req.params.nombre)
+
+/*localhost:3000/producto/leche*/
+router.get('/producto/:nombre', (req, res) => {
+    res.send(`Se ha solicitado ${req.params.nombre}`)
+    console.log("/producto:nombre");
 })
+
+
 
 
 module.exports = router
