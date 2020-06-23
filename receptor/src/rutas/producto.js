@@ -15,4 +15,8 @@ enrutador.get('/producto/:nombre', (req, res) => {
     res.send(`Se ha solicitado ${req.params.nombre}`)
 })
 
+enrutador.get('/producto/error', (req, res) => {
+    throw new Error('Esto es un error')
+})
+
 module.exports = enrutador
